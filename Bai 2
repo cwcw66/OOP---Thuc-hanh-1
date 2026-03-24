@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+ 
+class POINT {
+    private:
+           double x, y;
+    public:
+        void nhap (){
+            cin >> x >> y;
+        }
+        double getX () {return x;}
+        double getY () {return y;}
+};
+
+double tinhkhoangcach (POINT &p1, POINT &p2){
+    return (sqrt((p1.getX() - p2.getX()) *(p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())));
+}
+
+
+
+int main (){
+    POINT p1, p2;
+    p1.nhap();
+    p2.nhap();
+    double kc1 = tinhkhoangcach(p1,p2);
+    double kc2 = tinhkhoangcach(p2,p1);
+    cout << kc1 << " " << kc2;
+    return 0;
+
+}
