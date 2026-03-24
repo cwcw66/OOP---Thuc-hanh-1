@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+ 
+class PHANSO {
+    private:
+           int tu, mau;
+    public:
+        void nhap (){
+            cin >> tu >> mau;
+        }
+        int gettu () {return tu;}
+        int getmau () {return mau;}
+};
+
+double ketqua (PHANSO &n1){
+    return n1.gettu()/n1.getmau();
+
+}
+
+
+int main (){
+    PHANSO p1, p2;
+    p1.nhap();
+    p2.nhap();
+    double ps1 = ketqua(p1);
+    double ps2 = ketqua(p2);
+    if (ps1 > ps2){
+        cout << p1.gettu() << "/" << p1.getmau();
+    }
+    else if (ps2 > ps1){
+        cout << p2.gettu() << "/" << p2.getmau();
+    }
+    return 0;
+
+}
