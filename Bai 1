@@ -1,0 +1,32 @@
+
+#include <iostream>
+using namespace std;
+
+ 
+class PHANSO {
+   private:
+    int tu;
+    int mau;
+   public:
+    void input (){
+        cin >> tu >> mau;
+    }
+    void check (){
+        if (tu == 0){
+            cout << "Phan so bang khong";
+        }
+        else if ((tu > 0 && mau > 0) || (tu < 0. & mau < 0)){
+            cout << "Phan so duong";
+        }
+        else {
+            cout << "Phan so am";
+        }
+    }
+};
+
+int main (){
+    PHANSO ps;
+    ps.input();
+    ps.check();
+    return 0;
+}
