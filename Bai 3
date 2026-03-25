@@ -1,36 +1,69 @@
+
+
 #include <iostream>
 using namespace std;
 
  
 class PHANSO {
-    private:
-           int tu, mau;
-    public:
-        void nhap (){
-            cin >> tu >> mau;
-        }
-        int gettu () {return tu;}
-        int getmau () {return mau;}
+   private:
+    int tu;
+    int mau;
+   public:
+    bool input ();
+    void output ();
+    int check ();
+    int compare (PHANSO & ps);
 };
-
-double ketqua (PHANSO &n1){
-    return n1.gettu()/n1.getmau();
-
+bool PHANSO::input (){
+    cin >> tu;
+    cin >> mau;
+    if (mau == 0) return false;
+    return true;
 }
 
+void PHANSO::output(){
+    cout << "Phan so co dang : ";
+    if (tu < 0 &&  mau < 0){
+        cout  << -tu << "/" << -mau;
+    }
+    else if (tu == mau){
+        cout << 1;
+    
+    }
+    else cout << tu << "/" << mau;
+    cout << endl;
+}
+
+int PHANSO::check (){
+    if (tu * mau > 0) return 1;
+    if (tu * mau < 0) return -1;
+    return 0;
+    
+}
+
+int PHANSO::compare (PHANSO & ps1){
+    PHANSO psHieu;
+    psHieu.tu = tu*ps1.mau - mau*ps1.tu;
+    psHieu.mau = mau * ps1.mau;
+    return psHieu.check();
+}
 
 int main (){
-    PHANSO p1, p2;
-    p1.nhap();
-    p2.nhap();
-    double ps1 = ketqua(p1);
-    double ps2 = ketqua(p2);
-    if (ps1 > ps2){
-        cout << p1.gettu() << "/" << p1.getmau();
+    PHANSO ps1, ps2;
+    cout << "Nhap phan so thu nhat: ";
+    ps1.input();
+    cout << "Nhap phan so thu hai: ";
+    ps2.input();
+    int kt = ps1.compare(ps2);
+    if (kt >= 0){
+         ps1.output();
+         cout << "Phan so thu nhat lon hon" << endl;
     }
-    else if (ps2 > ps1){
-        cout << p2.gettu() << "/" << p2.getmau();
+    else {
+        ps2.output();
+        cout << "Phan so thu hai lon hon" << endl;
     }
     return 0;
-
 }
+
+
