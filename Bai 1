@@ -1,4 +1,5 @@
 
+
 #include <iostream>
 using namespace std;
 
@@ -8,25 +9,48 @@ class PHANSO {
     int tu;
     int mau;
    public:
-    void input (){
-        cin >> tu >> mau;
-    }
-    void check (){
-        if (tu == 0){
-            cout << "Phan so bang khong";
-        }
-        else if ((tu > 0 && mau > 0) || (tu < 0. & mau < 0)){
-            cout << "Phan so duong";
-        }
-        else {
-            cout << "Phan so am";
-        }
-    }
+    bool input ();
+    void output ();
+    int check ();
 };
+bool PHANSO::input (){
+    cin >> tu;
+    cin >> mau;
+    if (mau == 0) return false;
+    return true;
+}
+
+void PHANSO::output(){
+    if (tu < 0 &&  mau < 0){
+        cout << -tu << "/" << -mau;
+    }
+    else{
+    cout << tu << "/" << mau;
+    }
+    cout << endl;
+    
+}
+
+int PHANSO::check (){
+    if (tu * mau > 0) return 1;
+    if (tu * mau < 0) return -1;
+    return 0;
+    
+}
 
 int main (){
     PHANSO ps;
-    ps.input();
-    ps.check();
+    bool res = ps.input();
+    if (res == false) cout << "Phan so khong hop le";
+    else {
+        int kt = ps.check();
+        if (kt == 1) cout << "Phan so duong";
+        else if (kt == -1) cout << "Phan so am";
+        else cout << "Phan so bang khong";
+        cout << endl;
+    }
+    ps.output();
     return 0;
 }
+
+
