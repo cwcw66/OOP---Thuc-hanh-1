@@ -1,0 +1,121 @@
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+ 
+class PHANSO {
+   private:
+    int tu;
+    int mau;
+   public:
+    bool input ();
+    void output ();
+    int check ();
+    PHANSO tong (PHANSO &ps);
+    PHANSO hieu (PHANSO &ps);
+    PHANSO tich (PHANSO &ps);
+    PHANSO thuong (PHANSO &ps);
+    void rutGon();
+};
+bool PHANSO::input (){
+    cin >> tu;
+    cin >> mau;
+    if (mau == 0) return false;
+    return true;
+}
+
+void PHANSO::output(){
+    if (tu < 0 &&  mau < 0){
+        cout << -tu << "/" << -mau;
+    }
+    else{
+    cout << tu << "/" << mau;
+    }
+    cout << endl;
+    
+}
+
+int PHANSO::check (){
+    if (tu * mau > 0) return 1;
+    if (tu * mau < 0) return -1;
+    return 0;
+}
+
+int gcd(int a, int b){
+    while(b != 0){
+        int r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
+
+void PHANSO::rutGon(){
+    int a = abs(tu);
+    int b = abs(mau);
+    int uscln = gcd(a, b);
+    tu = tu/uscln;
+    mau = mau/uscln;
+    if (mau < 0){
+        tu = -tu;
+        mau = -mau;
+    } 
+}
+
+PHANSO PHANSO::tong (PHANSO &ps){
+    PHANSO psTong;
+    psTong.tu = tu*ps.mau + mau*ps.tu;
+    psTong.mau = mau*ps.mau;
+    psTong.rutGon();
+    return psTong;
+}
+
+PHANSO PHANSO::hieu (PHANSO &ps){
+    PHANSO psHieu;
+    psHieu.tu = tu*ps.mau - mau*ps.tu;
+    psHieu.mau = mau*ps.mau;
+    psHieu.rutGon();
+    return psHieu;
+}
+
+PHANSO PHANSO::tich (PHANSO &ps){
+    PHANSO psTich;
+    psTich.tu = tu*ps.tu;
+    psTich.mau = mau*ps.mau;
+    psTich.rutGon();
+    return psTich;
+}
+
+PHANSO PHANSO::thuong (PHANSO &ps){
+    if (ps.tu == 0){
+        cout << "Khong the chia cho 0";
+        exit(0);
+    }
+    PHANSO psThuong;
+    psThuong.tu = tu * ps.mau;
+    psThuong.mau = mau * ps.tu;
+    psThuong.rutGon();
+    return psThuong;
+}
+
+int main (){
+    PHANSO ps1, ps2;
+    cout << "Nhap phan so thu nhat: ";
+    ps1.input();
+    cout << "Nhap phan so thu hai: ";
+    ps2.input();
+
+    cout << "Tong hai phan so la: ";
+    PHANSO p = ps1.tong(ps2);
+    p.output();
+    cout << "\nHieu hai phan so la: ";
+    ps1.hieu(ps2).output();
+    cout << "\nTich hai phan so la: ";
+    ps1.tich(ps2).output();
+    cout << "\nThuong hai phan so la: ";
+    ps1.thuong(ps2).output();
+    return 0;
+}
+
