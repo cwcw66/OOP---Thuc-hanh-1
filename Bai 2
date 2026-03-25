@@ -1,31 +1,46 @@
+
+
 #include <iostream>
 using namespace std;
 
  
-class POINT {
-    private:
-           double x, y;
-    public:
-        void nhap (){
-            cin >> x >> y;
-        }
-        double getX () {return x;}
-        double getY () {return y;}
+class DIEM {
+   private:
+    int x, y;
+   public:
+    void input ();
+    void output ();
+    double tinhkhoangcach (DIEM &p);
 };
-
-double tinhkhoangcach (POINT &p1, POINT &p2){
-    return (sqrt((p1.getX() - p2.getX()) *(p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())));
+void DIEM::input (){
+    cin >> x >> y ;
 }
+
+double DIEM::tinhkhoangcach(DIEM & p1){
+    return sqrt(((x-p1.x)*(x-p1.x)) + ((y-p1.y)*(y-p1.y)));
+}
+void DIEM::output(){
+    cout << "(" << x << ", " << y << ")"; 
+    cout << endl;
+}
+
 
 
 
 int main (){
-    POINT p1, p2;
-    p1.nhap();
-    p2.nhap();
-    double kc1 = tinhkhoangcach(p1,p2);
-    double kc2 = tinhkhoangcach(p2,p1);
-    cout << kc1 << " " << kc2;
+    DIEM p1, p2;
+    cout << "Nhap diem thu nhat: ";
+    p1.input();
+    cout << "Toa do diem thu nhat la: ";
+    p1.output();
+    cout << "Nhap diem thu hai: ";
+    p2.input();
+    cout << "Toa do diem hu hai la: ";
+    p2.output();
+    double kc = p1.tinhkhoangcach(p2);
+    cout << "Khoang cach giua hai diem la: " << kc << endl;
+    
     return 0;
-
 }
+
+
